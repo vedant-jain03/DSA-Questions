@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+struct Item{
+    int v;
+    int w;
+    Item(int value,int weight)
+    {
+        this->v=value;
+        this->w=weight;
+    }
+};
+bool cmp(Item a,Item b)
+{
+    double r1=(double)(a.v)/(double)(a.w);
+    double r2=(double)(b.v)/(double)(b.w);
+    return (r1>r2);
+}
+int fractionalKnapsack(int W,Item a[],int n)
+{
+    sort(a,a+n,cmp);
+    int cur=0;
+    double final=0.0;
+    for(int i=0;i<n;i++)
+    {
+        if(cur+a[i].w<=W)
+        {
+            cur+=a[i].w;
+            final+=a[i].v;
+        }
+        else
+        {
+            int rem=W-a[i].w;
+            final+=a[i].v*(double(rem)/double(a[i].w));
+            break;
+        }
+    }
+    return final;
+}
+int main()
+{
+    int W = 50; //    Weight of knapsack 
+    Item arr[] = { { 60, 10 }, { 100, 20 }, { 120, 30 } }; 
+  
+    int n = sizeof(arr) / sizeof(arr[0]); 
+  
+    // Function call 
+    cout << "Maximum value we can obtain = "
+         << fractionalKnapsack(W, arr, n); 
+    return 0; 
+}
