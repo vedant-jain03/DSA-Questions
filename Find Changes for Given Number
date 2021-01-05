@@ -26,4 +26,5 @@ int main()
     cin>>n;
     cout<<"\nNumber of change for "<<n<<" :";
     find(n);
+    
 }
