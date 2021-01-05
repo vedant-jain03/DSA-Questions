@@ -29,4 +29,5 @@ int main()
     int n = sizeof(arr) / sizeof(arr[0]); 
     cout << "Minimum Number of Platforms Required ="<< find(arr, dep, n); 
     return 0; 
+    
 } 
