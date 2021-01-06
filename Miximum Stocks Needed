@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+int find(int n,int k,int price[])
+{
+    vector<pair<int, int> > v;
+    for(int i=0;i<n;i++)
+    {
+        v.push_back(make_pair(price[i],i+1));
+    }
+    int ans=0;
+    for(int i=0;i<n;i++)
+    {
+        ans=ans+min(v[i].second,k/v[i].first);
+        k=k-v[i].first*min(v[i].second,k/v[i].first);
+    }
+    return ans;
+}
+int main()
+{
+    int price[] = { 10, 7, 19 };
+    int n = sizeof(price)/sizeof(price[0]);
+    int k = 45;
+
+    cout<<"Minimum Stocks needed=" << find(n, k, price) << endl;
+
+    return 0;
+}
