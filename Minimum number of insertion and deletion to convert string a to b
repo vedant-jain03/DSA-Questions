@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+int LCS(string a,string b,int n,int m)
+{
+    int dp[n+1][m+1];
+    for(int i=0;i<=n;i++)dp[i][0]=0;
+    for(int i=0;i<=m;i++)dp[0][i]=0;
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=0;j<=m;j++)
+        {
+            if(a[i-1]==b[j-1])
+            {
+                dp[i][j]=1+dp[i-1][j-1];
+            }
+            else
+            {
+                dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+            }
+        }
+    }
+    return dp[n][m];
+}
+int main()
+{
+    string a="vedant";
+    string b="danbe";
+    int n=a.size(),m=b.size();
+    cout<<"Number of insertion in string b:"<<n-LCS(a,b,n,m);
+    cout<<"\nNumber of deletion in string b:"<<m-LCS(a,b,n,m);
+}
